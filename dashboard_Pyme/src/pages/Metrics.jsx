@@ -1,4 +1,6 @@
 import SalesChart from "../components/SalesChart";
+import DataTable from "../components/DataTable";
+import SecondChart from "../components/SecondChart";
 
 const Metrics = () => {
   return (
@@ -9,9 +11,16 @@ const Metrics = () => {
         <SalesChart />
       </div>
 
-      <div className="alert alert-secondary text-center">
-        Este gráfico es interactivo y muestra datos generados aleatoriamente.
+      <div className="card p-4 shadow mb-4" style={{ maxWidth: "900px", margin: "0 auto" }}>
+        <SecondChart />
       </div>
+
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <h5>Datos Detallados</h5>
+        <button className="btn btn-primary">Exportar Datos</button>
+      </div>
+
+      <DataTable />
     </div>
   );
 };
