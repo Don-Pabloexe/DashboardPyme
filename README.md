@@ -39,7 +39,7 @@ src/
 
 
 
-🧠 Autor
+## 🧠 Autor
 Pablo Gómez Quidel
 
 ⚙️ Cómo instalar y ejecutar el proyecto
