@@ -36,3 +36,53 @@ src/
 │   ├── DateContext.jsx
 ├── App.jsx
 ├── main.jsx
+
+
+
+🧠 Autor
+Pablo Gómez Quidel
+
+⚙️ Cómo instalar y ejecutar el proyecto
+Clonar el repositorio
+
+bash
+Copiar
+Editar
+git clone https://github.com/tu-usuario/tu-repositorio.git
+cd tu-repositorio
+Instalar las dependencias
+
+Asegúrate de tener instalado Node.js (preferiblemente versión 18 o superior).
+
+Luego ejecuta:
+
+bash
+Copiar
+Editar
+npm install
+Ejecutar el proyecto en modo desarrollo
+
+bash
+Copiar
+Editar
+npm run dev
+Abrir la aplicación
+
+Una vez que el servidor esté corriendo, abre tu navegador y entra en:
+
+arduino
+Copiar
+Editar
+http://localhost:5173/
+💬 Notas adicionales
+El proyecto no tiene conexión real a un backend; los datos son simulados dinámicamente en el frontend.
+
+Cada vez que cambias el filtro de fecha, los gráficos, KPIs y tablas se actualizan automáticamente simulando diferentes períodos de tiempo.
+
+Si deseas generar una versión para producción, puedes ejecutar:
+
+bash
+Copiar
+Editar
+npm run build
+
