@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Metrics from "./pages/Metrics";
 import Profile from "./pages/Profile"; // <-- Importa el nuevo
+import Clientes from "./pages/Clientes";
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/metrics" element={<Metrics />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/clientes" element={<Clientes />} />
+
         </Routes>
       </div>
 
