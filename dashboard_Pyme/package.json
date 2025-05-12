@@ -12,8 +12,10 @@
   "dependencies": {
     "bootstrap": "^5.3.5",
     "chart.js": "^4.4.9",
+    "prop-types": "^15.8.1",
     "react": "^19.0.0",
     "react-chartjs-2": "^5.3.0",
+    "react-csv": "^2.2.2",
     "react-dom": "^19.0.0",
     "react-router-dom": "^6.30.0"
   },

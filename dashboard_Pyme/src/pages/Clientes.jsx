@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
+import { CSVLink } from "react-csv";
 
 const Clientes = () => {
   const [clientes, setClientes] = useState([]);
   const [form, setForm] = useState({ nombre: "", correo: "", empresa: "" });
+  const [modoEdicion, setModoEdicion] = useState(false);
+  const [clienteEditando, setClienteEditando] = useState(null);
 
   useEffect(() => {
     const guardados = JSON.parse(localStorage.getItem("clientes")) || [];
@@ -21,8 +24,17 @@ const Clientes = () => {
     e.preventDefault();
     if (!form.nombre || !form.correo || !form.empresa) return alert("Completa todos los campos");
 
-    const nuevoCliente = { id: Date.now(), ...form };
-    setClientes([...clientes, nuevoCliente]);
+    if (modoEdicion) {
+      const actualizados = clientes.map((c) =>
+        c.id === clienteEditando ? { ...c, ...form } : c
+      );
+      setClientes(actualizados);
+      setModoEdicion(false);
+      setClienteEditando(null);
+    } else {
+      const nuevoCliente = { id: Date.now(), ...form };
+      setClientes([...clientes, nuevoCliente]);
+    }
     setForm({ nombre: "", correo: "", empresa: "" });
   };
 
@@ -32,6 +44,18 @@ const Clientes = () => {
       setClientes(clientes.filter((c) => c.id !== id));
     }
   };
+
+  const editarCliente = (cliente) => {
+    setForm({ nombre: cliente.nombre, correo: cliente.correo, empresa: cliente.empresa });
+    setModoEdicion(true);
+    setClienteEditando(cliente.id);
+  };
+
+  const headers = [
+    { label: "Nombre", key: "nombre" },
+    { label: "Correo", key: "correo" },
+    { label: "Empresa", key: "empresa" }
+  ];
 
   return (
     <div className="container mt-4">
@@ -69,9 +93,22 @@ const Clientes = () => {
           />
         </div>
         <div className="col-md-1">
-          <button type="submit" className="btn btn-success w-100">+</button>
+          <button type="submit" className="btn btn-primary w-100">
+            {modoEdicion ? "✔" : "+"}
+          </button>
         </div>
       </form>
+
+      <div className="d-flex justify-content-end mb-3">
+        <CSVLink
+          data={clientes}
+          headers={headers}
+          filename="clientes.csv"
+          className="btn btn-success"
+        >
+          Exportar CSV
+        </CSVLink>
+      </div>
 
       {clientes.length === 0 ? (
         <p className="text-center text-muted">No hay clientes registrados.</p>
@@ -93,7 +130,13 @@ const Clientes = () => {
                 <td>{cliente.empresa}</td>
                 <td className="text-center">
                   <button
-                    className="btn btn-danger btn-sm"
+                    className="btn btn-sm btn-warning me-2"
+                    onClick={() => editarCliente(cliente)}
+                  >
+                    Editar
+                  </button>
+                  <button
+                    className="btn btn-sm btn-danger"
                     onClick={() => eliminarCliente(cliente.id)}
                   >
                     Eliminar
